@@ -5,10 +5,10 @@ from distributedNames.models import Name, Node
 class NameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Name
-        fields = 'id'
+        fields = ('name',)
 
 
 class NodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Node
-        fields = 'ip'
+        fields = ('ip',)

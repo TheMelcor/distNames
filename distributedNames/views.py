@@ -8,7 +8,7 @@ from distributedNames.serializers import NameSerializer
 from distributedNames.serializers import NodeSerializer
 
 from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import FormParser
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
@@ -23,7 +23,14 @@ def add(request):
     if request.method == 'POST':
         form = NameForm(request.POST)
         if form.is_valid():
+            data = form.cleaned_data
+
+            serializer = NameSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+
             return HttpResponseRedirect('/')
+
     else:
         form = NameForm()
 
