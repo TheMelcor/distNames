@@ -8,10 +8,8 @@ from django.db import models
 
 class Name(models.Model):
     name = models.TextField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Node(models.Model):
     ip = models.TextField(max_length=15)
-    isAuth = models.BooleanField
 
