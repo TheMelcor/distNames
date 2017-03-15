@@ -49,4 +49,4 @@ Temporary Items
 
 
 *.pyc
-
+db.sqlite3
