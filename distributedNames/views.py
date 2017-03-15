@@ -18,3 +18,7 @@ def register(request):
         form = NameForm()
 
     return render(request, 'templates/register.html', {'form' : form})
+
+
+def name_list(request):
+    return
