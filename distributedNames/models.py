@@ -7,7 +7,7 @@ from django.db import models
 # Make models if needed here!
 
 
-class Users:
+class Name:
     name = ''
 
     def __init__(self):
