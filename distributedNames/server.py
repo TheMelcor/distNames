@@ -30,3 +30,8 @@ class Server:
     def clear_node_list(self):
         self.nodeList = []
 
+    @staticmethod
+    def get_auth_nodes():
+        # List of authority nodes
+        return []
+
