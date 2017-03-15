@@ -2,39 +2,16 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from django.db import models
 
 # Make models if needed here!
 
 
-class Name:
-    name = ''
-
-    def __init__(self):
-        return
-
-    def set_name(self, name):
-        self.name = name
-
-    def get_name(self):
-        return self.name
+class Name(models.Model):
+    name = models.TextField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
-class Node:
-    ip = ""
-    isAuthNode = False
+class Node(models.Model):
+    ip = models.TextField(max_length=15)
+    isAuth = models.BooleanField
 
-    def __init__(self):
-        return
-
-    def set_ip(self, ip):
-        self.ip = ip
-
-    def get_ip(self):
-        return self.ip
-
-    def set_auth(self, auth):
-        self.isAuthNode = auth
-
-    def get_auth(self):
-        return self.isAuthNode
