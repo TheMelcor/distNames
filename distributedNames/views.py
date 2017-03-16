@@ -6,7 +6,7 @@ from distributedNames.models import Name
 from distributedNames.models import Node
 from distributedNames.serializers import NameSerializer
 from distributedNames.serializers import NodeSerializer
-
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import FormParser
 from rest_framework.renderers import JSONRenderer
@@ -37,6 +37,7 @@ def add(request):
     return render(request, 'templates/register.html', {'form': form})
 
 
+@csrf_exempt
 def name_list(request):
     if request.method == 'GET':
         names = Name.objects.all()
@@ -52,6 +53,7 @@ def name_list(request):
         return JsonResponse(serializer.error, status=400)
 
 
+@csrf_exempt
 def node_list(request):
     if request.method == 'GET':
         nodes = Node.objects.all()
