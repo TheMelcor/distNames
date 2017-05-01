@@ -1,15 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from distributedNames import serializers
 from distributedNames.models import Name
 from distributedNames.models import Node
 from distributedNames.serializers import NameSerializer
 from distributedNames.serializers import NodeSerializer
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
-from rest_framework.parsers import FormParser
-from rest_framework.renderers import JSONRenderer
+from distributedNames.server import Server
+
 from rest_framework.parsers import JSONParser
 
 from .forms import NameForm
@@ -66,3 +64,8 @@ def node_list(request):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.error, status=400)
+
+
+@csrf_exempt
+def start(request):
+    Server.run()
