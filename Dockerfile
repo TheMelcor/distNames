@@ -6,7 +6,7 @@ RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/
 add . /code/
-RUN "python pip install requirements.txt"
+RUN "pip install /code/requirements.txt"
 EXPOSE 8000
 
 CMD ["python", "manage.py", "runserver"]
