@@ -14,19 +14,19 @@ class Server:
     @staticmethod
     def get_auth_nodes():
         # List of authority nodes
-        return []
+        return ['158.39.77.134:8000']
 
     @staticmethod
     def request_nodes(nodelist):
         # r = request.get(nodelist[i] + '/nodes/')
         # for each node in list, run request
-        # check response data and add anything that isn't stored in db
+        # TODO check response data and add anything that isn't stored in db
         # if any data in db isn't received from another server, check if notFound is true
         # if notFound is true, delete it from db
         # else, set notFound to true
         if nodelist is not None:
             for i in nodelist:
-                r = requests.get(nodelist[i] + '/nodes/')
+                r = requests.get(i + '/nodes/')
                 data = JSONParser().parse(r)
                 serializer = NodeSerializer(data=data)
                 if serializer.is_valid():
@@ -38,7 +38,7 @@ class Server:
     def request_names(nodelist):
         if nodelist is not None:
             for i in nodelist:
-                r = requests.get(nodelist[i] + '/list/')
+                r = requests.get('http://' + nodelist[i] + '/list/')
                 data = JSONParser().parse(r)
                 serializer = NameSerializer(data=data)
                 if serializer.is_valid():
@@ -49,7 +49,6 @@ class Server:
     @staticmethod
     def run():
         n = Server.get_auth_nodes()
-
         Server.request_nodes(n)
         x = True
         while x:
