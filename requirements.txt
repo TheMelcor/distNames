@@ -1,2 +1,3 @@
-Django
-Requests
+Django==1.9.7
+requests==2.13.0
+djangorestframework==3.6.3
